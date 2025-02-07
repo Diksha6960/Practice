@@ -1,0 +1,99 @@
+
+<h1 class="text-center m-2">Assignment</h1>
+<div class="row">
+  <div class="col-12 text-end p-3">
+    <button class="btn btn-sm btn-primary text-end " (click)="onAdd()"> Add New</button>
+  </div>
+</div>
+
+
+<table >
+  <thead>
+    <tr>
+      <th>Index
+      <th>RuleName</th>
+      <th>Active</th>
+      <th>Type</th>
+      <th>SubType</th>
+      <th>Impacted</th>
+      <th>Date</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody >
+    <tr *ngFor="let data of data;let id = index">
+      <td>{{id+1}}</td>
+      <td>
+        <div *ngIf="data.isEdit">
+          <input type="text" [(ngModel)]="data.ruleName">
+      </div>
+      <div *ngIf="!data.isEdit">
+        {{data.ruleName}}
+      </div>
+       </td>
+       <td>
+        <div *ngIf="data.isEdit">
+          <input type="text" [(ngModel)]="data.active">
+      </div>
+      <div *ngIf="!data.isEdit">
+        {{data.active}}
+      </div>
+       </td>
+       <td>
+        <div *ngIf="data.isEdit">
+          <input type="text" [(ngModel)]="data.type">
+      </div>
+      <div *ngIf="!data.isEdit">
+        {{data.type}}
+      </div>
+       </td>
+       <td>
+        <div *ngIf="data.isEdit">
+          <input type="text" [(ngModel)]="data.subType">
+      </div>
+      <div *ngIf="!data.isEdit">
+        {{data.subType}}
+      </div>
+       </td>
+       <td>
+        <div *ngIf="data.isEdit">
+          <input type="text" [(ngModel)]="data.impacted">
+      </div>
+      <div *ngIf="!data.isEdit">
+        {{data.impacted}}
+      </div>
+       </td>
+       <td>
+        <div *ngIf="data.isEdit">
+          <input type="text" [(ngModel)]="data.lastScheduledDate">
+      </div>
+      <div *ngIf="!data.isEdit">
+        {{data.lastScheduledDate}}
+      </div>
+       </td>
+       <td class="text-center">
+        <div *ngIf="!data.isEdit">
+          
+            <button class="btn btn-warning" (click)="onEdit(data)">Update</button>
+          </div>
+
+          <div *ngIf="data.isEdit">
+            
+             
+              <button class="btn btn-success" (click)="onCancel(data)">Save</button>
+            </div>
+      </td>
+
+    </tr>
+  </tbody>
+</table>
+<div >
+  <button  class="btn btn-info m-3" (click)="sortDataAsc()">Sort Asc</button>
+<button class="btn btn-secondary" (click)="sortDataDesc()">Sort Desc</button>
+</div>
+
+<div>
+  <label for="filter" class="m-3">Filter By Name: </label>
+<input id="filter" type="text" #filterValue>
+<button (click)="filterBy(filterValue)">Filter</button>
+</div>
